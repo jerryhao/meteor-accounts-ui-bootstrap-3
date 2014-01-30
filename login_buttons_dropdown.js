@@ -85,9 +85,9 @@
       loginButtonsSession.resetMessages();
 
       // store values of fields before swtiching to the signup form
-      var username = trimmedElementValueById('login-username');
-      var email = trimmedElementValueById('login-email');
-      var usernameOrEmail = trimmedElementValueById('login-username-or-email');
+      var username = trimmedElementValueById('login-username') && trimmedElementValueById('login-username').toLowerCase();
+      var email = trimmedElementValueById('login-email') && trimmedElementValueById('login-email').toLowerCase();
+      var usernameOrEmail = trimmedElementValueById('login-username-or-email') && trimmedElementValueById('login-username-or-email').toLowerCase();
       // notably not trimmed. a password could (?) start or end with a space
       var password = elementValueById('login-password');
 
@@ -113,8 +113,8 @@
       loginButtonsSession.resetMessages();
 
       // store values of fields before swtiching to the signup form
-      var email = trimmedElementValueById('login-email');
-      var usernameOrEmail = trimmedElementValueById('login-username-or-email');
+      var email = trimmedElementValueById('login-email') && trimmedElementValueById('login-email').toLowerCase();
+      var usernameOrEmail = trimmedElementValueById('login-username-or-email') && trimmedElementValueById('login-username-or-email').toLowerCase();
 
       loginButtonsSession.set('inSignupFlow', false);
       loginButtonsSession.set('inForgotPasswordFlow', true);
@@ -133,9 +133,9 @@
     'click #back-to-login-link': function () {
       loginButtonsSession.resetMessages();
 
-      var username = trimmedElementValueById('login-username');
-      var email = trimmedElementValueById('login-email')
-            || trimmedElementValueById('forgot-password-email'); // Ughh. Standardize on names?
+      var username = trimmedElementValueById('login-username') && trimmedElementValueById('login-username').toLowerCase();
+      var email = (trimmedElementValueById('login-email') && trimmedElementValueById('login-email').toLowerCase())
+            || (trimmedElementValueById('forgot-password-email') && trimmedElementValueById('forgot-password-email').toLowerCase()); // Ughh. Standardize on names?
 
       loginButtonsSession.set('inSignupFlow', false);
       loginButtonsSession.set('inForgotPasswordFlow', false);
@@ -354,9 +354,9 @@
   var login = function () {
     loginButtonsSession.resetMessages();
 
-    var username = trimmedElementValueById('login-username');
-    var email = trimmedElementValueById('login-email');
-    var usernameOrEmail = trimmedElementValueById('login-username-or-email');
+    var username = trimmedElementValueById('login-username') && trimmedElementValueById('login-username').toLowerCase();
+    var email = trimmedElementValueById('login-email') && trimmedElementValueById('login-email').toLowerCase();
+    var usernameOrEmail = trimmedElementValueById('login-username-or-email') && trimmedElementValueById('login-username-or-email').toLowerCase();
     // notably not trimmed. a password could (?) start or end with a space
     var password = elementValueById('login-password');
 
@@ -400,7 +400,7 @@
 
     var options = {}; // to be passed to Accounts.createUser
 
-    var username = trimmedElementValueById('login-username');
+    var username = trimmedElementValueById('login-username') && trimmedElementValueById('login-username').toLowerCase();
     if (username !== null) {
       if (!Accounts._loginButtons.validateUsername(username))
         return;
